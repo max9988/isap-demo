@@ -1,6 +1,7 @@
 package com.unisys.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +16,8 @@ public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
-	@SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "pid_Sequence")
+	@SequenceGenerator(name = "pid_Sequence", sequenceName = "ID_SEQ")
 	
 	private int pid;
 	
@@ -26,9 +27,22 @@ public class Person implements Serializable{
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	public Person() {
-	}
-
+	@Column(name = "EMAIL")
+	private String email;	
+	
+    @Column(name = "CREATED_DATE")
+    Date date;
+	
+    public Person() {
+    }
+    
+    public Person(String firstName, String lastName, String email, Date date) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.date = date;
+    }
+    
 	public int getPid() {
 		return pid;
 	}
@@ -52,6 +66,25 @@ public class Person implements Serializable{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }	
+
+    @Override
+    public String toString() {
+        return "Person{" + "pid=" + pid + ", firstname='" + firstName + '\'' + ", email='" + email + '\'' + ", date=" + date + '}';
+    }    
 }

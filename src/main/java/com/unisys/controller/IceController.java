@@ -30,21 +30,23 @@ public class IceController {
    }
    
    @Transactional(readOnly = true)
-   @RequestMapping("/getAllPersons")
+   @RequestMapping("/Person")
    public String getAllPersons() {
-	   
+	    
+	    String jsonStr = null;
 		try {
-			System.out.println("IceController: load all persons...");
-	        for (Person p : pRepository.findAll()) {
-	            System.out.println("ID="+ p.getPid() + " First Name=" + p.getFirstName());
-	        }			
-		
+	        System.out.println("findByEmail(String email)...");
+	        for (Person p : pRepository.getPersonByEmail("222@yahoo.com")) {
+	            System.out.println(p);
+	            jsonStr = "{'firstName':'" + p.getFirstName() + "', 'lastName':'" + p.getLastName() + "'}";
+	        }	       	       
+			
 		}catch(Exception e){
 			System.out.println("Load all persons exception " + e);
 			e.printStackTrace();
 		}
 		
-      return "List of users information";
+      return jsonStr;
    }
    
    @RequestMapping("/createProfile")
