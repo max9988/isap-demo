@@ -9,17 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_FR_PERSON")
 public class Person implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "pid_Sequence")
-	@SequenceGenerator(name = "pid_Sequence", sequenceName = "ID_SEQ")
-	
-	private int pid;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
+	@SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
+	@Column(name = "PERSON_ID")
+	private long id;
 	
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -27,28 +29,20 @@ public class Person implements Serializable{
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	@Column(name = "EMAIL")
-	private String email;	
-	
-    @Column(name = "CREATED_DATE")
-    Date date;
-	
     public Person() {
     }
     
-    public Person(String firstName, String lastName, String email, Date date) {
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.date = date;
     }
     
-	public int getPid() {
-		return pid;
+    public long getId() {
+		return id;
 	}
 
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -67,24 +61,9 @@ public class Person implements Serializable{
 		this.lastName = lastName;
 	}
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }	
-
-    @Override
+	@Override
     public String toString() {
-        return "Person{" + "pid=" + pid + ", firstname='" + firstName + '\'' + ", email='" + email + '\'' + ", date=" + date + '}';
-    }    
+        return "Person{" + "id=" + id + ", firstname='" + firstName + '\'' + '}';
+    } 
+    
 }
