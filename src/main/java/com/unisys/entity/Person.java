@@ -1,14 +1,10 @@
 package com.unisys.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +14,8 @@ public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
-	@SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
+	//@SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
 	@Column(name = "PERSON_ID")
 	private long id;
 	

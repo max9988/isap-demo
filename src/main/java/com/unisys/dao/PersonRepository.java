@@ -7,6 +7,5 @@ import com.unisys.entity.Person;
 public interface PersonRepository extends CrudRepository<Person, Long> { 
 	
 	Iterable<Person> findAll();
-	//List<Person> getPersonByEmail(String email);	
 	Person getPersonById(long id);
 }

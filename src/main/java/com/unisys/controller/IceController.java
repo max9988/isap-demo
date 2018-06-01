@@ -1,7 +1,5 @@
 package com.unisys.controller;
 
-import java.util.List;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +16,6 @@ import com.unisys.entity.Person;
 
 @RestController
 public class IceController {
-	
-   private List <Person> persons;
 	
    @Autowired
    DataSource dataSource;
@@ -78,16 +74,16 @@ public class IceController {
    }
    
    @Transactional(readOnly = true)
-   @RequestMapping("/applications")
-   public String getAllApplications() {
+   @RequestMapping("/applications/{pid}")
+   public String getApplicationsByPersonId(@PathVariable long pid) {
 	    
-	    System.out.println("getAllApplications()...");
+	    System.out.println("getApplicationsByPersonId()..." + pid);
 	    
 	    ObjectMapper mapper = new ObjectMapper();
 
 	    String jsonStr = null;
 		try {
-	        Iterable<FRApplication> apps  = aRepository.findAll();
+	        Iterable<FRApplication> apps  = aRepository.findBySearchTermNamedNative(pid);
 	        jsonStr = mapper.writeValueAsString(apps); 
 	        
 	        System.out.println("jsonStr: " + jsonStr);
