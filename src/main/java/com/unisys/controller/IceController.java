@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,7 @@ public class IceController {
 
    @Transactional(readOnly = true)
    @RequestMapping("/Person/{id}")
+   @CrossOrigin(origins = "http://liwang.unisys.com:9090")
    public String getPerson(@PathVariable long id) {
 	    
 	    System.out.println("getPerson(): id=" + id);
@@ -54,17 +56,20 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/Persons")
-   public String getPersons() {
+   @CrossOrigin(origins = "http://liwang.unisys.com:9090")
+   public String getAllPersons() {
 	    
 	    ObjectMapper mapper = new ObjectMapper();
 
 	    String jsonStr = null;
 		try {
-	        System.out.println("getPersons is called...");	    
+	        System.out.println("getAllPersons is called...");	    
 	        
 	        Iterable<Person> persons  = pRepository.findAll();
 	        jsonStr = mapper.writeValueAsString(persons);
 			
+	        System.out.println("Persons: " + jsonStr);
+	        
 		}catch(Exception e){
 			System.out.println("Load all persons exception " + e);
 			e.printStackTrace();
@@ -75,6 +80,7 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/applications/{pid}")
+   @CrossOrigin(origins = "http://liwang.unisys.com:9090")
    public String getApplicationsByPersonId(@PathVariable long pid) {
 	    
 	    System.out.println("getApplicationsByPersonId()..." + pid);
