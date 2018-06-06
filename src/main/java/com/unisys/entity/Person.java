@@ -24,6 +24,9 @@ public class Person implements Serializable{
 
 	@Column(name = "LAST_NAME")
 	private String lastName;
+
+	@Column(name = "DEFACTO_ID")
+	private String defactoId;
 	
     public Person() {
     }
@@ -55,6 +58,15 @@ public class Person implements Serializable{
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	
+	public String getDefactoId() {
+		return defactoId;
+	}
+
+	public void setDefactoId(String defactoId) {
+		this.defactoId = defactoId;
 	}
 
 	@Override

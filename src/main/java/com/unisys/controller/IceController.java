@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unisys.dao.ApplicationRepository;
 import com.unisys.dao.PersonRepository;
+import com.unisys.dao.PreEnrollRepository;
 import com.unisys.entity.FRApplication;
 import com.unisys.entity.Person;
+import com.unisys.entity.FRPreEnroll;
 
 @RestController
 public class IceController {
@@ -26,6 +28,9 @@ public class IceController {
 
    @Autowired
    ApplicationRepository aRepository;
+
+   @Autowired
+   PreEnrollRepository preEnrollRepository;
    
    @RequestMapping("/")
    public String sayHello() {
@@ -34,7 +39,7 @@ public class IceController {
 
    @Transactional(readOnly = true)
    @RequestMapping("/Person/{id}")
-   @CrossOrigin(origins = "http://liwang.unisys.com:9090")
+   @CrossOrigin(origins = "http://192.60.241.81:9090")
    public String getPerson(@PathVariable long id) {
 	    
 	    System.out.println("getPerson(): id=" + id);
@@ -56,7 +61,7 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/Persons")
-   @CrossOrigin(origins = "http://liwang.unisys.com:9090")
+   @CrossOrigin(origins = "http://192.60.241.81:9090")
    public String getAllPersons() {
 	    
 	    ObjectMapper mapper = new ObjectMapper();
@@ -80,7 +85,7 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/applications/{pid}")
-   @CrossOrigin(origins = "http://liwang.unisys.com:9090")
+   @CrossOrigin(origins = "http://192.60.241.81:9090")
    public String getApplicationsByPersonId(@PathVariable long pid) {
 	    
 	    System.out.println("getApplicationsByPersonId()..." + pid);
@@ -101,6 +106,30 @@ public class IceController {
 		
       return jsonStr;
    }   
+   
+   @Transactional(readOnly = true)
+   @RequestMapping("/preenroll/{pid}")
+   @CrossOrigin(origins = "http://192.60.241.81:9090")
+   public String getPreEnrollsByPersonId(@PathVariable long pid) {
+	    
+	    System.out.println("getPreEnrollsByPersonId() Here................." + pid);
+	    
+	    ObjectMapper mapper = new ObjectMapper();
+
+	    String jsonStr = null;
+		try {
+	        Iterable<FRPreEnroll> enrolls  = preEnrollRepository.findBySearchTermNamedNative(pid);
+	        jsonStr = mapper.writeValueAsString(enrolls); 
+	        
+	        System.out.println("jsonStr: " + jsonStr);
+			
+		}catch(Exception e){
+			System.out.println("Load all enrolls exception " + e);
+			e.printStackTrace();
+		}
+		
+      return jsonStr;
+   }  
    
    @RequestMapping("/createProfile")
    public String createProfile() {
