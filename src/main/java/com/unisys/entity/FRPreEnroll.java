@@ -34,11 +34,26 @@ public class FRPreEnroll implements Serializable{
 	@Column(name = "EMAIL")
 	private String email;
 	
+	@Column(name = "PHONE")
+	private String phone;	
+	
 	@Column(name = "ADDRESS")
 	private String address;	
 	
+	@Column(name = "CITY")
+	private String city;
+	
+	@Column(name = "STATE")
+	private String state;
+	
+	@Column(name = "ZIPCODE")
+	private String zipCode;
+	
+	@Column(name = "COUNTRY")
+	private String country;	
+	
 	@Column(name = "REFERRAL_SCORE")
-	private String referralScore;	
+	private String referralScore;		
 	
     public FRPreEnroll() {
     }
@@ -111,7 +126,47 @@ public class FRPreEnroll implements Serializable{
 	public void setReferralScore(String referralScore) {
 		this.referralScore = referralScore;
 	}
-    
+    	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	@Override
     public String toString() {
         return "FRPreEnroll{" + "preEnrollId=" + preEnrollId + ", lastName='" + lastName + '\'' + '}';
