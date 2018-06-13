@@ -61,6 +61,7 @@ public class IceController {
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090",
+		                   "http://domville.unisys.com:8080",
 		                   "http://192.60.242.230:8080"})
    public String getPerson(@PathVariable long id) {
 	    
@@ -86,6 +87,7 @@ public class IceController {
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://domville.unisys.com:8080",
 		                   "http://192.60.242.230:8080"})
    public String getAllPersons() {
 	    
@@ -111,6 +113,7 @@ public class IceController {
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://domville.unisys.com:8080",
 		                   "http://192.60.242.230:8080"})
    public String getApplicationsByPersonId(@PathVariable long pid) {
 	    
@@ -138,6 +141,7 @@ public class IceController {
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://domville.unisys.com:8080",
 		                   "http://192.60.242.230:8080"})
    public String getPreEnrollsByPersonId(@PathVariable long pid) {
 	    
@@ -164,7 +168,8 @@ public class IceController {
    @RequestMapping("/PersonData/{pid}")
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
 		                   "http://192.60.242.97:9090", 
-		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://brandonchin.unisys.com:9090",
+		                   "http://domville.unisys.com:8080",
 		                   "http://192.60.242.230:8080"})
    public String getPersonDataByPersonId(@PathVariable long pid) {
 	    
@@ -202,7 +207,8 @@ public class IceController {
    @RequestMapping("/DashboardDetail/{a}")
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
 		                   "http://192.60.242.97:9090", 
-		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://brandonchin.unisys.com:9090",
+		                   "http://domville.unisys.com:8080",
 		                   "http://192.60.242.230:8080"})
    public String getDashboardDetailByANumber(@PathVariable String a) {
 	    
