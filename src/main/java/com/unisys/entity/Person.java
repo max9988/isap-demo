@@ -19,8 +19,6 @@ public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
-	//@SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
 	@Column(name = "PERSON_ID")
 	private long id;
 	
@@ -35,9 +33,6 @@ public class Person implements Serializable{
 
 	@Column(name = "DOB")
 	private Date dob;
-	
-	//@Column(name = "GENDER")
-	//private int gender;
 	
 	@Transient
 	private int riskScore;
