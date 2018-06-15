@@ -28,10 +28,9 @@ public class CheckInHistory implements Serializable{
 	@Id
 	@Column(name = "CHECK_IN_ID")
 	private long id;
-	
-    @ManyToOne
-    @JoinColumn(name = "A_NUMBER", nullable=false)
-	private DashboardPerson dashPerson;
+
+    @Column(name = "A_NUMBER")
+	private String aNumber;
 	
 	@Column(name = "CHECK_IN_DATE")
 	private Date checkInDate;
@@ -71,12 +70,12 @@ public class CheckInHistory implements Serializable{
 	
 	public CheckInHistory() {}
 
-	public CheckInHistory(long id, DashboardPerson dashPerson, Date checkInDate, String checkInType,
+	public CheckInHistory(long id, String aNumber, Date checkInDate, String checkInType,
 			String checkInStatus, String checkInLocation, String checkInName, String bioMetricType, Blob bioMetricImage,
 			String ncicHit, String ncicShortDesc, String ncicFullDesc, String nletsInfo) {
 		super();
 		this.id = id;
-		this.dashPerson = dashPerson;
+		this.aNumber = aNumber;
 		this.checkInDate = checkInDate;
 		this.checkInType = checkInType;
 		this.checkInStatus = checkInStatus;
@@ -98,12 +97,12 @@ public class CheckInHistory implements Serializable{
 		this.id = id;
 	}
 
-	public DashboardPerson getDashPerson() {
-		return dashPerson;
+	public String getaNumber() {
+		return aNumber;
 	}
 
-	public void setDashPerson(DashboardPerson dashPerson) {
-		this.dashPerson = dashPerson;
+	public void setaNumber(String aNumber) {
+		this.aNumber = aNumber;
 	}
 
 	public Date getCheckInDate() {
