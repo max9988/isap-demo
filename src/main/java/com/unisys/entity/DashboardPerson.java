@@ -51,7 +51,7 @@ public class DashboardPerson implements Serializable{
 	private long status;
 	
 	@Column(name = "APPOINTMENT_DATE")
-	private Date appDate;
+	private String appDate;
 	
 	@Column(name = "RISKSCORE")
 	private long riskScore;
@@ -82,13 +82,16 @@ public class DashboardPerson implements Serializable{
 	
 	@Column(name = "CASE_NOTE")
 	private String caseNote;
+	
+	@Column(name = "LANE")
+	private String lane;	
 
 	public DashboardPerson() {}
 
 	public DashboardPerson(long id, String firstName, String lastName,
 			String aNumber, Date dob, long gender, long bioMetricType, Blob image, String imageStr, long appType,
-			long status, Date appDate, long riskScore, String alertDesc, String address, String phone1, String phone2,
-			String country, String disposition, String caseNumber, String courtDate, String caseNote) {
+			long status, String appDate, long riskScore, String alertDesc, String address, String phone1, String phone2,
+			String country, String disposition, String caseNumber, String courtDate, String caseNote, String lane) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -112,6 +115,7 @@ public class DashboardPerson implements Serializable{
 		this.caseNumber = caseNumber;
 		this.courtDate = courtDate;
 		this.caseNote = caseNote;
+		this.lane = lane;
 	}
 
 	public long getId() {
@@ -202,11 +206,11 @@ public class DashboardPerson implements Serializable{
 		this.status = status;
 	}
 
-	public Date getAppDate() {
+	public String getAppDate() {
 		return appDate;
 	}
 
-	public void setAppDate(Date appDate) {
+	public void setAppDate(String appDate) {
 		this.appDate = appDate;
 	}
 
@@ -288,6 +292,14 @@ public class DashboardPerson implements Serializable{
 
 	public void setCaseNote(String caseNote) {
 		this.caseNote = caseNote;
+	}
+
+	public String getLane() {
+		return lane;
+	}
+
+	public void setLane(String lane) {
+		this.lane = lane;
 	}	
 	
 }
