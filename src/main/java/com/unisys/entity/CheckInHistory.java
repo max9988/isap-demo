@@ -7,13 +7,9 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import com.unisys.entity.DashboardPerson;
 
 @Entity
 @Table(name = "TBL_CHECK_IN_HISTORY")
@@ -35,7 +31,7 @@ public class CheckInHistory implements Serializable{
 	@Column(name = "CHECK_IN_DATE")
 	private Date checkInDate;
 	
-	@Column(name = "CHECKIN_TYPE")
+	@Column(name = "CHECK_IN_TYPE")
 	private String checkInType;
 	
 	@Column(name = "CHECK_IN_STATUS")
