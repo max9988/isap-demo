@@ -2,7 +2,6 @@ package com.unisys.entity;
 
 import java.io.Serializable;
 import java.sql.Blob;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +28,7 @@ public class CheckInHistory implements Serializable{
 	private String aNumber;
 	
 	@Column(name = "CHECK_IN_DATE")
-	private Date checkInDate;
+	private String checkInDate;
 	
 	@Column(name = "CHECK_IN_TYPE")
 	private String checkInType;
@@ -66,7 +65,7 @@ public class CheckInHistory implements Serializable{
 	
 	public CheckInHistory() {}
 
-	public CheckInHistory(long id, String aNumber, Date checkInDate, String checkInType,
+	public CheckInHistory(long id, String aNumber, String checkInDate, String checkInType,
 			String checkInStatus, String checkInLocation, String checkInName, String bioMetricType, Blob bioMetricImage,
 			String ncicHit, String ncicShortDesc, String ncicFullDesc, String nletsInfo) {
 		super();
@@ -101,11 +100,11 @@ public class CheckInHistory implements Serializable{
 		this.aNumber = aNumber;
 	}
 
-	public Date getCheckInDate() {
+	public String getCheckInDate() {
 		return checkInDate;
 	}
 
-	public void setCheckInDate(Date checkInDate) {
+	public void setCheckInDate(String checkInDate) {
 		this.checkInDate = checkInDate;
 	}
 
