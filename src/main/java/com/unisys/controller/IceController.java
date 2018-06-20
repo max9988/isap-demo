@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unisys.dao.ApplicationRepository;
 import com.unisys.dao.DashboardDetailRepository;
 import com.unisys.dao.DashboardPersonRepository;
+import com.unisys.dao.MetricsRepository;
 import com.unisys.dao.PersonDataRepository;
 import com.unisys.dao.PersonRepository;
 import com.unisys.dao.PreEnrollRepository;
@@ -26,6 +27,7 @@ import com.unisys.entity.DashboardPerson;
 import com.unisys.entity.FRApplication;
 import com.unisys.entity.FRDashboardDetails;
 import com.unisys.entity.FRPreEnroll;
+import com.unisys.entity.Metrics;
 import com.unisys.entity.Person;
 import com.unisys.entity.PersonData;
 import com.unisys.entity.CheckInHistory;
@@ -56,6 +58,9 @@ public class IceController {
    
    @Autowired
    CheckInHistoryRepository cihRepository;
+
+   @Autowired
+   MetricsRepository mRepository;
    
    @RequestMapping("/")
    public String sayHello() {
@@ -64,7 +69,8 @@ public class IceController {
 
    @Transactional(readOnly = true)
    @RequestMapping("/DashboardPersons")
-   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+   @CrossOrigin(origins = {"http://192.60.241.181:9090",
+		                   "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090", 
 		                   "http://domville.unisys.com:9090",
@@ -105,7 +111,8 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/checkInHistories/{a}")
-   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+   @CrossOrigin(origins = {"http://192.60.242.181:9090",
+		                   "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090",
 		                   "http://domville.unisys.com:9090",
@@ -145,11 +152,39 @@ public class IceController {
 		
       return jsonStr;
    } 
+
+   @Transactional(readOnly = true)
+   @RequestMapping("/Metrics")
+   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+                           "http://liwang.unisys.com:9090",
+		                   "http://192.60.242.97:9090", 
+		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://domville.unisys.com:9090",
+		                   "http://192.60.242.230:8080"})
+   public String getAllMetrics() {
+	    
+	    ObjectMapper mapper = new ObjectMapper();
+
+	    String jsonStr = null;
+		try {
+	        System.out.println("getAllMetrics is called...");	    
+	        
+	        Iterable<Metrics> metrics  = mRepository.findAll();
+	        jsonStr = mapper.writeValueAsString(metrics);
+	        
+		}catch(Exception e){
+			System.out.println("Load getAllMetrics exception " + e);
+			e.printStackTrace();
+		}
+		
+      return jsonStr;
+   }
    
    
    @Transactional(readOnly = true)
    @RequestMapping("/Person/{id}")
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+                           "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090",
 		                   "http://domville.unisys.com:9090",
@@ -176,6 +211,7 @@ public class IceController {
    @Transactional(readOnly = true)
    @RequestMapping("/Persons")
    @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+                           "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090", 
 		                   "http://domville.unisys.com:9090",
@@ -201,7 +237,8 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/applications/{pid}")
-   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+   @CrossOrigin(origins = {"http://192.60.242.181:9090", 
+                           "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090", 
 		                   "http://domville.unisys.com:9090",
@@ -229,7 +266,8 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/preenroll/{pid}")
-   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+   @CrossOrigin(origins = {"http://192.60.242.181:9090",
+                           "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090", 
 		                   "http://domville.unisys.com:9090",
@@ -257,7 +295,8 @@ public class IceController {
 
    @Transactional(readOnly = true)
    @RequestMapping("/PersonData/{pid}")
-   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+   @CrossOrigin(origins = {"http://192.60.242.181:9090",
+                           "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090",
 		                   "http://domville.unisys.com:9090",
@@ -296,7 +335,8 @@ public class IceController {
    
    @Transactional(readOnly = true)
    @RequestMapping("/DashboardDetail/{a}")
-   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+   @CrossOrigin(origins = {"http://192.60.242.181:9090", 
+                           "http://liwang.unisys.com:9090",
 		                   "http://192.60.242.97:9090", 
 		                   "http://brandonchin.unisys.com:9090",
 		                   "http://domville.unisys.com:9090",

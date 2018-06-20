@@ -86,12 +86,15 @@ public class DashboardPerson implements Serializable{
 	@Column(name = "LANE")
 	private String lane;	
 
+	@Column(name = "HELPED")
+	private String helped;
+	
 	public DashboardPerson() {}
 
 	public DashboardPerson(long id, String firstName, String lastName,
 			String aNumber, Date dob, long gender, long bioMetricType, Blob image, String imageStr, long appType,
 			long status, String appDate, long riskScore, String alertDesc, String address, String phone1, String phone2,
-			String country, String disposition, String caseNumber, String courtDate, String caseNote, String lane) {
+			String country, String disposition, String caseNumber, String courtDate, String caseNote, String lane, String helped) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -116,6 +119,7 @@ public class DashboardPerson implements Serializable{
 		this.courtDate = courtDate;
 		this.caseNote = caseNote;
 		this.lane = lane;
+		this.helped = helped;
 	}
 
 	public long getId() {
@@ -300,6 +304,14 @@ public class DashboardPerson implements Serializable{
 
 	public void setLane(String lane) {
 		this.lane = lane;
+	}
+
+	public String getHelped() {
+		return helped;
+	}
+
+	public void setHelped(String helped) {
+		this.helped = helped;
 	}	
 	
 }
