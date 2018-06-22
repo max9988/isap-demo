@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.unisys.dao.ApplicationRepository;
 import com.unisys.dao.DashboardDetailRepository;
 import com.unisys.dao.DashboardPersonRepository;
+import com.unisys.dao.GISRiskRepository;
+import com.unisys.dao.LinkAnalysisRepository;
 import com.unisys.dao.MetricsRepository;
 import com.unisys.dao.PersonDataRepository;
 import com.unisys.dao.PersonRepository;
@@ -31,6 +33,9 @@ import com.unisys.entity.Metrics;
 import com.unisys.entity.Person;
 import com.unisys.entity.PersonData;
 import com.unisys.entity.CheckInHistory;
+
+import com.unisys.entity.LinkAnalysis;
+import com.unisys.entity.GISRisk;
 
 @RestController
 public class IceController {
@@ -61,6 +66,12 @@ public class IceController {
 
    @Autowired
    MetricsRepository mRepository;
+
+   @Autowired
+   LinkAnalysisRepository linkARepository;
+
+   @Autowired
+   GISRiskRepository gisRiskRepository;
    
    @RequestMapping("/")
    public String sayHello() {
@@ -180,6 +191,60 @@ public class IceController {
       return jsonStr;
    }
    
+
+   @Transactional(readOnly = true)
+   @RequestMapping("/LinkAnalysis")
+   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+                           "http://liwang.unisys.com:9090",
+		                   "http://192.60.242.97:9090", 
+		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://domville.unisys.com:9090",
+		                   "http://192.60.242.230:8080"})
+   public String getAllLinkAnalysis() {
+	    
+	    ObjectMapper mapper = new ObjectMapper();
+
+	    String jsonStr = null;
+		try {
+	        System.out.println("getAllLinkAnalysis is called...");	    
+	        
+	        Iterable<LinkAnalysis> links  = linkARepository.findAll();
+	        jsonStr = mapper.writeValueAsString(links);
+	        
+		}catch(Exception e){
+			System.out.println("Load getAllLinkAnalysis exception " + e);
+			e.printStackTrace();
+		}
+		
+      return jsonStr;
+   }
+   
+   @Transactional(readOnly = true)
+   @RequestMapping("/GISRisk")
+   @CrossOrigin(origins = {"http://192.60.241.81:9090", 
+                           "http://liwang.unisys.com:9090",
+		                   "http://192.60.242.97:9090", 
+		                   "http://brandonchin.unisys.com:9090", 
+		                   "http://domville.unisys.com:9090",
+		                   "http://192.60.242.230:8080"})
+   public String getAllGISRisk() {
+	    
+	    ObjectMapper mapper = new ObjectMapper();
+
+	    String jsonStr = null;
+		try {
+	        System.out.println("getAllGISRisk is called...");	    
+	        
+	        Iterable<GISRisk> links  = gisRiskRepository.findAll();
+	        jsonStr = mapper.writeValueAsString(links);
+	        
+		}catch(Exception e){
+			System.out.println("Load getAllGISRisk exception " + e);
+			e.printStackTrace();
+		}
+		
+      return jsonStr;
+   }  
    
    @Transactional(readOnly = true)
    @RequestMapping("/Person/{id}")
